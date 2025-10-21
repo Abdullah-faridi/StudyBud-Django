@@ -1,0 +1,26 @@
+{% for room in rooms %}
+<div class="bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-purple-500 transition-colors">
+    <div class="flex justify-between items-start mb-3">
+        <div class="flex items-center space-x-2">
+            <a href="{% url 'user-profile' room.host.id %}" class="text-purple-400 hover:text-purple-300 font-medium">
+                @{{room.host.username}}
+            </a>
+            <span class="text-gray-400">•</span>
+            <small class="text-gray-400">{{room.topic.name}}</small>
+        </div>
+        
+        {% if request.user == room.host %}
+        <div class="flex space-x-2">
+            <a href="{% url 'update-room' room.id %}" class="text-blue-400 hover:text-blue-300 text-sm">Edit</a>
+            <a href="{% url 'delete-room' room.id %}" class="text-red-400 hover:text-red-300 text-sm">Delete</a>
+        </div>
+        {% endif %}
+    </div>
+    
+    <h4 class="text-lg font-semibold text-white mb-2">
+        <a href="{% url 'room' room.id %}" class="hover:text-purple-300 transition-colors">
+            {{room.name}}
+        </a>
+    </h4>
+</div>
+{% endfor %}

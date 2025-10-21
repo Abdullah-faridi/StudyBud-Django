@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-gray-800 rounded-lg p-6 border border-gray-700">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <p class="text-gray-200 mb-4 text-center">Are you sure you want to delete "{{obj}}"?</p>
+        
+        <div class="flex space-x-4 justify-center">
+            <a href="{{request.META.HTTP_REFERER}}" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg transition-colors">
+                Go Back
+            </a>
+            <input type="submit" value="Confirm" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg cursor-pointer transition-colors" />
+        </div>
+    </form>
+</div>
+{% endblock content %}

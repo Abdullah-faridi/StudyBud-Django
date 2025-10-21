@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-gray-800 rounded-lg p-6 border border-gray-700">
+    {% if page == 'login' %}
+    <form method="POST" action="" class="space-y-4">
+        {% csrf_token %}
+        <div>
+            <label class="block text-gray-300 mb-2">Username</label>
+            <input type="text" name="username" placeholder="Enter Username" 
+                   class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-400" />
+        </div>
+        
+        <div>
+            <label class="block text-gray-300 mb-2">Password</label>
+            <input type="password" name="password" placeholder="Enter Password" 
+                   class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-400" />
+        </div>
+        
+        <input type="submit" name="Login" 
+               class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg cursor-pointer transition-colors" />
+    </form>
+    
+    <p class="text-gray-400 text-center mt-4">Haven't signed Up?</p>
+    <a href="{% url 'register' %}" class="block text-center text-purple-400 hover:text-purple-300 mt-2">Sign Up</a>
+    
+    {% else %}
+    <form method="POST" action="" class="space-y-4">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Register" 
+               class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg cursor-pointer transition-colors" />
+    </form>
+    
+    <p class="text-gray-400 text-center mt-4">Already Signed up?</p>
+    <a href="{% url 'login' %}" class="block text-center text-purple-400 hover:text-purple-300 mt-2">Login</a>
+    {% endif %}
+</div>
+{% endblock content %}

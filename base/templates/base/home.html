@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="home-container grid grid-cols-1 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+    <!-- Topics Sidebar -->
+    <div class="lg:col-span-1">
+        {% include "base/topic_component.html" %}
+    </div>
+
+    <!-- Main Feed -->
+    <div class="lg:col-span-2">
+        <div class="flex justify-between items-center mb-6">
+            <h5 class="text-gray-300">{{room_count}} rooms available</h5>
+            <a href="{% url 'create-room' %}" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
+                Create Room
+            </a>
+        </div>
+        
+        <div class="space-y-4">
+            {% include "base/feed_component.html" %}
+        </div>
+    </div>
+
+    <!-- Activity Sidebar -->
+    <div class="lg:col-span-1">
+        {% include "base/activity_component.html" %}
+    </div>
+</div>
+{% endblock content %}
